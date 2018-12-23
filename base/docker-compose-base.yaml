@@ -41,7 +41,7 @@ services:
     environment:
       - CORE_PEER_ID=peer0.benz.test.com
       - CORE_PEER_ADDRESS=peer0.benz.test.com:7051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.benz.test.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.benz.test.com:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.benz.test.com:7051
       - CORE_PEER_LOCALMSPID=benzMSP
     volumes:
@@ -53,27 +53,6 @@ services:
       - 7051:7051
       - 7053:7053
 
-  peer1.benz.test.com:
-    container_name: peer1.benz.test.com
-    extends:
-      file: peer-base.yaml
-      service: peer-base
-    environment:
-      - CORE_PEER_ID=peer1.benz.test.com
-      - CORE_PEER_ADDRESS=peer1.benz.test.com:7051
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.benz.test.com:7051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.benz.test.com:7051
-      - CORE_PEER_LOCALMSPID=benzMSP
-    volumes:
-        - /var/run/:/host/var/run/
-        - ../crypto-config/peerOrganizations/benz.test.com/peers/peer1.benz.test.com/msp:/etc/hyperledger/fabric/msp
-        - ../crypto-config/peerOrganizations/benz.test.com/peers/peer1.benz.test.com/tls:/etc/hyperledger/fabric/tls
-        - peer1.benz.test.com:/var/hyperledger/production
-
-    ports:
-      - 8051:7051
-      - 8053:7053
-
   peer0.audi.test.com:
     container_name: peer0.audi.test.com
     extends:
@@ -83,7 +62,7 @@ services:
       - CORE_PEER_ID=peer0.audi.test.com
       - CORE_PEER_ADDRESS=peer0.audi.test.com:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.audi.test.com:7051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.audi.test.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.audi.test.com:7051
       - CORE_PEER_LOCALMSPID=audiMSP
     volumes:
         - /var/run/:/host/var/run/
@@ -94,22 +73,3 @@ services:
       - 9051:7051
       - 9053:7053
 
-  peer1.audi.test.com:
-    container_name: peer1.audi.test.com
-    extends:
-      file: peer-base.yaml
-      service: peer-base
-    environment:
-      - CORE_PEER_ID=peer1.audi.test.com
-      - CORE_PEER_ADDRESS=peer1.audi.test.com:7051
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.audi.test.com:7051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.audi.test.com:7051
-      - CORE_PEER_LOCALMSPID=audiMSP
-    volumes:
-        - /var/run/:/host/var/run/
-        - ../crypto-config/peerOrganizations/audi.test.com/peers/peer1.audi.test.com/msp:/etc/hyperledger/fabric/msp
-        - ../crypto-config/peerOrganizations/audi.test.com/peers/peer1.audi.test.com/tls:/etc/hyperledger/fabric/tls
-        - peer1.audi.test.com:/var/hyperledger/production
-    ports:
-      - 10051:7051
-      - 10053:7053

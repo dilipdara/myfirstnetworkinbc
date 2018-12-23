@@ -8,10 +8,8 @@ version: '2'
 volumes:
   orderer.test.com:
   peer0.benz.test.com:
-  peer1.benz.test.com:
   peer0.audi.test.com:
-  peer1.audi.test.com:
-
+  
 networks:
   bysn:
 
@@ -33,27 +31,11 @@ services:
     networks:
       - bysn
 
-  peer1.benz.test.com:
-    container_name: peer1.benz.test.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer1.benz.test.com
-    networks:
-      - bysn
-
   peer0.audi.test.com:
     container_name: peer0.audi.test.com
     extends:
       file:  base/docker-compose-base.yaml
       service: peer0.audi.test.com
-    networks:
-      - bysn
-
-  peer1.audi.test.com:
-    container_name: peer1.audi.test.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer1.audi.test.com
     networks:
       - bysn
 
@@ -86,8 +68,6 @@ services:
     depends_on:
       - orderer.test.com
       - peer0.benz.test.com
-      - peer1.benz.test.com
       - peer0.audi.test.com
-      - peer1.audi.test.com
     networks:
       - bysn
