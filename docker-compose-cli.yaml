@@ -6,19 +6,10 @@
 version: '2'
 
 volumes:
-<<<<<<< HEAD
   orderer.test.com:
   peer0.benz.test.com:
   peer0.audi.test.com:
   
-=======
-  orderer.example.com:
-  peer0.benz.test.com:
-  peer1.benz.test.com:
-  peer0.audi.test.com:
-  peer1.audi.test.com:
-
->>>>>>> d7ba48580093760a424e1d00c1e7f90010046ce8
 networks:
   bysn:
 
@@ -33,28 +24,13 @@ services:
       - bysn
 
   peer0.benz.test.com:
-<<<<<<< HEAD
     container_name: peer0.benz.test.com
-=======
-    container_name: peer0.benz.test.com:
->>>>>>> d7ba48580093760a424e1d00c1e7f90010046ce8
     extends:
       file:  base/docker-compose-base.yaml
       service: peer0.benz.test.com
     networks:
       - bysn
 
-<<<<<<< HEAD
-=======
-  peer1.benz.test.com:
-    container_name: peer1.benz.test.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer1.benz.test.com
-    networks:
-      - bysn
-
->>>>>>> d7ba48580093760a424e1d00c1e7f90010046ce8
   peer0.audi.test.com:
     container_name: peer0.audi.test.com
     extends:
@@ -63,17 +39,6 @@ services:
     networks:
       - bysn
 
-<<<<<<< HEAD
-=======
-  peer1.audi.test.com:
-    container_name: peer1.audi.test.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer1.audi.test.com
-    networks:
-      - bysn
-
->>>>>>> d7ba48580093760a424e1d00c1e7f90010046ce8
   cli:
     container_name: cli
     image: hyperledger/fabric-tools:$IMAGE_TAG
@@ -98,19 +63,10 @@ services:
         - /var/run/:/host/var/run/
         - ./../chaincode/:/opt/gopath/src/github.com/chaincode
         - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
-        - ./scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
         - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
     depends_on:
-<<<<<<< HEAD
       - orderer.test.com
       - peer0.benz.test.com
       - peer0.audi.test.com
-=======
-      - orderer.example.com
-      - peer0.benz.test.com
-      - peer1.benz.test.com
-      - peer0.audi.test.com
-      - peer1.audi.test.com
->>>>>>> d7ba48580093760a424e1d00c1e7f90010046ce8
     networks:
       - bysn

@@ -22,11 +22,7 @@ Organizations:
         Name: OrdererOrg
 
         # ID to load the MSP definition as
-<<<<<<< HEAD
         ID: OrdererMSP
-=======
-        ID: TestOrdererMSP
->>>>>>> d7ba48580093760a424e1d00c1e7f90010046ce8
 
         # MSPDir is the filesystem path which contains the MSP configuration
         MSPDir: crypto-config/ordererOrganizations/test.com/msp
@@ -37,7 +33,6 @@ Organizations:
         Policies:
             Readers:
                 Type: Signature
-<<<<<<< HEAD
                 Rule: "OR('OrdererMSP.member')"
             Writers:
                 Type: Signature
@@ -45,15 +40,6 @@ Organizations:
             Admins:
                 Type: Signature
                 Rule: "OR('OrdererMSP.admin')"
-=======
-                Rule: "OR('TestOrdererMSP.member')"
-            Writers:
-                Type: Signature
-                Rule: "OR('TestOrdererMSP.member')"
-            Admins:
-                Type: Signature
-                Rule: "OR('TestOrdererMSP.admin')"
->>>>>>> d7ba48580093760a424e1d00c1e7f90010046ce8
 
     - &benz
         # DefaultOrg defines the organization which is used in the sampleconfig
